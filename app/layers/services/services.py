@@ -12,7 +12,17 @@ def getAllImages():
     # 1) traer un listado de imágenes crudas desde la API (ver transport.py)
     # 2) convertir cada img. en una card.
     # 3) añadirlas a un nuevo listado que, finalmente, se retornará con todas las card encontradas.
-    pass
+
+    lista_imagenes_crudas = transport.getAllImages() # Para obtener las imagenes crudas desde la API.
+    cartas = []  # Lista para guardar las card obtenidas a continuación.
+
+    for imagen in lista_imagenes_crudas: # Recorre la lista de imagenes crudas para transformar cada una en una card.
+
+        carta = translator.fromRequestIntoCard(imagen) # Se utiliza el translator.py para transformar la imagen a card.
+
+        cartas.append(carta) # Se guarda cada card en la lista cartas.
+    
+    return cartas
 
 # función que filtra según el nombre del pokemon.
 def filterByCharacter(name):
